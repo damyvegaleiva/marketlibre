@@ -1,0 +1,57 @@
+.navbar-container {
+  width: 50%;
+  margin: auto;
+  display: grid;
+  padding: 20px 0px;
+  gap: 15px;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "logo search disney"
+    "empty navlist cart";
+
+  .navbar-logo {
+    grid-area: logo;
+    margin: auto;
+    height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .navbar-search {
+    grid-area: search;
+    width: 100%;
+    height: 35px;
+    input {
+      padding-left: 20px;
+      &:focus {
+        outline: none;
+        border: 0.75px solid b;
+      }
+    }
+  }
+
+  .navbar-disney {
+    grid-area: disney;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .navbar-list {
+    grid-area: navlist;
+    display: flex;
+    li {
+      &:not(:first-child) {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .navbar-cart {
+    grid-area: cart;
+  }
+}
