@@ -1,13 +1,13 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
-type NavbarLogoProps = {
+type TNavbarLogoProps = {
   url: string;
   alt: string;
   src: string;
   componentClass: string;
 };
 
-const NavbarLogo: React.FC<NavbarLogoProps> = ({
+const NavbarLogo: React.FC<TNavbarLogoProps> = ({
   url,
   alt,
   src,

@@ -11,11 +11,15 @@ const NavbarContainer: React.FC = () => {
           url="/"
           src="./images/logo.png"
           alt="Mercadolibre logo"
-          componentClass="navbar-logo"
+          componentClass="navbar-logo w-1/2"
         />
+
         <NavbarSearch />
+
         <NavbarList />
+
         <CartWidget />
+
         <NavbarLogo
           url="https://www.disneyplus.com/"
           src="./images/disney.webp"

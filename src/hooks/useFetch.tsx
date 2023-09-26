@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../config/config";
 
-interface FetchReturn<T> {
+type TFetchReturn<T> = {
   data: T | null;
   isLoading: boolean;
   error: Error | null;
-}
+};
 
-const useFetch = <T,>(url: string): FetchReturn<T> => {
+const useFetch = <T,>(url: string): TFetchReturn<T> => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
@@ -25,7 +25,7 @@ const useFetch = <T,>(url: string): FetchReturn<T> => {
       } finally {
         setTimeout(() => {
           setIsLoading(false);
-        }, 1500);
+        }, 1700);
       }
     };
 

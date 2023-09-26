@@ -1,15 +1,20 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { TDataSearch } from "../types/types";
 import { SEARCH_URL } from "../config/config";
 import ItemList from "../components/ItemList";
-import { DataType } from "../types/types";
+import Spinner from "../components/Spinner";
+
+export type TItemListContainer = {
+  data: TDataSearch | null;
+  isLoading: boolean;
+};
 
 const ItemListContainer: React.FC = () => {
   const { value } = useParams();
-  const { data, isLoading }: { data: DataType | null; isLoading: boolean } =
-    useFetch(SEARCH_URL(value));
+  const { data, isLoading }: TItemListContainer = useFetch(SEARCH_URL(value));
 
-  if (isLoading) return <h1>...LOADING</h1>;
+  if (isLoading) return <Spinner />;
 
   return <ItemList fetchedData={data} />;
 };
