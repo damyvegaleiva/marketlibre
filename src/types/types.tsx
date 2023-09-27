@@ -8,7 +8,7 @@ export type TDataSearch = {
   country_default_time_zone: string;
   query: string;
   paging: object;
-  results: object[];
+  results: TDataResults[];
   sort: object;
   available_sorts: object[];
   filters: object[];
@@ -57,6 +57,15 @@ export type TDataResults = {
   inventory_id: null;
 };
 
+type TDataItemPictures = {
+  id: string;
+  url: string;
+  secure_url: string;
+  size: string;
+  max_size: string;
+  quality: string;
+};
+
 export type TDataItem = {
   id: string;
   site_id: string;
@@ -82,7 +91,7 @@ export type TDataItem = {
   thumbnail_id: string;
   thumbnail: string;
   secure_thumbnail: string;
-  pictures: object[];
+  pictures: TDataItemPictures[];
   video_id: null;
   descriptions: string[];
   accepts_mercadopago: boolean;

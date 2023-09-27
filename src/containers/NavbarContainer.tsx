@@ -10,7 +10,7 @@ const NavbarContainer: React.FC = () => {
         <NavbarLogo
           url="/"
           src="./images/logo.png"
-          alt="Mercadolibre logo"
+          alt="Marketlibre logo"
           componentClass="navbar-logo w-1/2"
         />
 

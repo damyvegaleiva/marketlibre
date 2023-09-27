@@ -5,7 +5,7 @@ import { SEARCH_URL } from "../config/config";
 import ItemList from "../components/ItemList";
 import Spinner from "../components/Spinner";
 
-export type TItemListContainer = {
+type TItemListContainer = {
   data: TDataSearch | null;
   isLoading: boolean;
 };

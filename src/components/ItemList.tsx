@@ -1,5 +1,5 @@
 import { ItemListAdapter } from "../adapters/ItemListAdapter";
-import { TDataResults, TDataSearch } from "../types/types";
+import { TDataSearch } from "../types/types";
 import Item from "./Item";
 
 type TItemListProps = {
@@ -7,7 +7,7 @@ type TItemListProps = {
 };
 
 const ItemList: React.FC<TItemListProps> = ({ fetchedData }) => {
-  const data: TDataResults[] | null = ItemListAdapter(fetchedData);
+  const data = ItemListAdapter(fetchedData);
 
   return (
     <div className="flex flex-col items-stretch justify-center m-auto w-[100%]">
