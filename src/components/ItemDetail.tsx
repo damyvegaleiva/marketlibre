@@ -7,8 +7,6 @@ type TItemDetail = {
 };
 
 const ItemDetail: React.FC<TItemDetail> = ({ item }) => {
-  console.log(item);
-
   return (
     <article className="flex flex-row items-center justify-center w-1/2 gap-5 py-10 m-auto mt-16 text-center bg-white rounded-lg">
       <ItemDetailInfo item={item} />

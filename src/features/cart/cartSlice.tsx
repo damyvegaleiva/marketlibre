@@ -1,31 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+// import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface CounterState {
+type CartItem = {
+  id: string;
+  image: string;
+  price: number;
   qty: number;
-  cart: object[];
+};
+
+export interface CartState {
+  cart: CartItem[];
+  isInCart: boolean;
 }
 
-const initialState: CounterState = {
-  qty: 0,
+const initialState: CartState = {
   cart: [],
+  isInCart: false,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    itemExistsInCart: (state, action: PayloadAction<string>) => {
-      return state.cart.some((item) => item.id === action.payload.id);
+    setIsInCart: (state, action) => {
+      state.isInCart = state.cart.some((item) => item.id === action.payload);
+      return;
     },
 
     addToCart: (state, action) => {
-      const exists = state.cart.some((item) => item.id === action.payload.id);
+      const isInCart = state.cart.find((item) => item.id === action.payload.id);
 
-      if (exists) {
-        console.log("Item already exists in cart.");
-        return;
-      }
+      if (isInCart) return console.log("Ya existe en el carrito.");
 
       state.cart.push({
         id: action.payload.id,
@@ -33,6 +38,8 @@ export const cartSlice = createSlice({
         price: action.payload.price,
         qty: 1,
       });
+
+      return;
     },
 
     clearCart: (state) => {
@@ -42,6 +49,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, setIsInCart, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

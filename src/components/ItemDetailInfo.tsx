@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { TDataItem } from "../types/types";
-import { addToCart } from "../features/cart/cartSlice";
+import { addToCart, setIsInCart } from "../features/cart/cartSlice";
 import { RootState } from "../app/store";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 type TItemDetail = {
   item: TDataItem | undefined;
@@ -9,9 +11,17 @@ type TItemDetail = {
 
 const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   const dispatch = useDispatch();
-  const cart = useSelector((state: RootState) => state.cart.cart);
+  const cart = useSelector((state: RootState) => state.cart);
 
-  console.log(cart);
+  console.log(cart.cart);
+
+  useEffect(() => {
+    if (item) {
+      dispatch(setIsInCart(item.id));
+    }
+  }, [item, dispatch, cart.cart]);
+
+  console.log(cart.isInCart);
 
   return (
     <div className=" order-3 w-[400px] text-left self-stretch flex flex-col gap-10 border shadow-md rounded-md p-8">
@@ -44,12 +54,21 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
         </p>
       </div>
 
-      <button
-        className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
-        onClick={() => dispatch(addToCart(item))}
-      >
-        Agregar al Carrito
-      </button>
+      {!cart.isInCart ? (
+        <button
+          className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
+          onClick={() => dispatch(addToCart(item))}
+        >
+          Agregar al Carrito
+        </button>
+      ) : (
+        <button
+          className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
+          onClick={() => dispatch(addToCart(item))}
+        >
+          <Link to={"/cart"}>Ir al Carrito</Link>
+        </button>
+      )}
     </div>
   );
 };
