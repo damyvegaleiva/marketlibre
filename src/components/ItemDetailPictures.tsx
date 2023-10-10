@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
+import { TDataItemPictures } from "../types/types";
 
-const ItemDetailPictures = ({ pictures }) => {
+type ItemDetailPicturesProps = {
+  pictures: TDataItemPictures[] | undefined;
+};
+
+const ItemDetailPictures: React.FC<ItemDetailPicturesProps> = ({
+  pictures,
+}) => {
   const [picture, setPicture] = useState<string | undefined>(undefined);
 
   useEffect(() => {

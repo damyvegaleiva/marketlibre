@@ -57,7 +57,7 @@ export type TDataResults = {
   inventory_id: null;
 };
 
-type TDataItemPictures = {
+export type TDataItemPictures = {
   id: string;
   url: string;
   secure_url: string;
