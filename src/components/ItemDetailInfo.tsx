@@ -13,15 +13,11 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
 
-  console.log(cart.cart);
-
   useEffect(() => {
     if (item) {
       dispatch(setIsInCart(item.id));
     }
   }, [item, dispatch, cart.cart]);
-
-  console.log(cart.isInCart);
 
   return (
     <div className=" order-3 w-[400px] text-left self-stretch flex flex-col gap-10 border shadow-md rounded-md p-8">
