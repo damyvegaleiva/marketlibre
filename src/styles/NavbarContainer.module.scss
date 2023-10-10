@@ -20,13 +20,13 @@
   }
 
   .navbar-search {
-    grid-area: search;
-    width: 95%;
-    height: 40px;
-
     input {
+      grid-area: search;
+      width: 95%;
+      height: 40px;
+      margin: auto;
+      padding: 0 15px;
       border-radius: 2px;
-      padding-left: 20px;
       box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 
       &:focus {

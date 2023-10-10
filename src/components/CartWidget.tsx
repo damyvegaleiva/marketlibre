@@ -1,17 +1,16 @@
 import { BsCart2 } from "react-icons/bs";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
-  const navigate: NavigateFunction = useNavigate();
-
   return (
-    <div
-      className="navbar-cart"
-      role="button"
-      tabIndex={0}
-      onClick={() => navigate("/cart")}
-    >
-      <BsCart2 />
+    <div className="flex items-center justify-start gap-4 navbar-cart">
+      <Link to={"/login"}>
+        <h2>Ingresa</h2>
+      </Link>
+
+      <Link to={"/cart"}>
+        <BsCart2 />
+      </Link>
     </div>
   );
 };

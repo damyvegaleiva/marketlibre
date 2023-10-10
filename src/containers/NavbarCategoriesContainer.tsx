@@ -11,7 +11,7 @@ const NavbarCategoriesContainer = () => {
 
   return (
     <li onClick={handleClick}>
-      Mas Categorías <BsChevronCompactDown className={"inline"} />
+      Categorías <BsChevronCompactDown className={"inline"} />
       <CategoriesList isHidden={isHidden} />
     </li>
   );

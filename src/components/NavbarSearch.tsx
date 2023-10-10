@@ -17,24 +17,23 @@ const NavbarSearch: React.FC = () => {
   };
 
   return (
-    <div className="navbar-search">
+    <search className="navbar-search" role="search">
       <form
-        action="submit"
+        action="/search"
         onSubmit={(e: React.FormEvent<HTMLFormElement>): void =>
           handleSubmit(e)
         }
       >
         <input
-          type="text"
+          type="search"
           placeholder="Buscar productos, marcas y mas... "
           value={inputValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
             setInputValue(e.target.value)
           }
-          className="navbar-search"
         />
       </form>
-    </div>
+    </search>
   );
 };
 
