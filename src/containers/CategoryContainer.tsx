@@ -1,19 +1,19 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { TDataSearch } from "../types/types";
-import { ITEM_SEARCH_URL } from "../config/config";
+import { CATEGORY_SEARCH_URL } from "../config/config";
 import ItemList from "../components/ItemList";
 import Spinner from "../components/Spinner";
+import { TDataSearch } from "../types/types";
 
-type TItemListContainer = {
+type TCategoryContainer = {
   data: TDataSearch | null;
   isLoading: boolean;
 };
 
-const ItemListContainer: React.FC = () => {
-  const { value } = useParams();
-  const { data, isLoading }: TItemListContainer = useFetch(
-    ITEM_SEARCH_URL(value)
+const CategoryContainer = () => {
+  const { id } = useParams();
+  const { data, isLoading }: TCategoryContainer = useFetch(
+    CATEGORY_SEARCH_URL(id)
   );
 
   if (isLoading) return <Spinner />;
@@ -21,4 +21,4 @@ const ItemListContainer: React.FC = () => {
   return <ItemList fetchedData={data} />;
 };
 
-export default ItemListContainer;
+export default CategoryContainer;

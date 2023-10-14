@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { TDataItem } from "../types/types";
 import { addToCart, setIsInCart } from "../features/cart/cartSlice";
 import { RootState } from "../app/store";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 type TItemDetail = {
@@ -50,21 +49,12 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
         </p>
       </div>
 
-      {!cart.isInCart ? (
-        <button
-          className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
-          onClick={() => dispatch(addToCart(item))}
-        >
-          Agregar al Carrito
-        </button>
-      ) : (
-        <button
-          className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
-          onClick={() => dispatch(addToCart(item))}
-        >
-          <Link to={"/cart"}>Ir al Carrito</Link>
-        </button>
-      )}
+      <button
+        className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
+        onClick={() => dispatch(addToCart(item))}
+      >
+        Agregar al Carrito
+      </button>
     </div>
   );
 };

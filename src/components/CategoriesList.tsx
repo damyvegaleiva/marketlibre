@@ -1,5 +1,5 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { CATEGORIES_URL } from "../config/config";
+import { CATEGORIES_LIST_URL } from "../config/config";
 import useFetch from "../hooks/useFetch";
 import { TCategoryData } from "../types/types";
 
@@ -12,13 +12,13 @@ type TCategoriesList = {
 };
 
 const CategoriesList = ({ isHidden }: TCategoriesListProps) => {
-  const { data }: TCategoriesList = useFetch(CATEGORIES_URL);
+  const { data }: TCategoriesList = useFetch(CATEGORIES_LIST_URL);
   const navigate: NavigateFunction = useNavigate();
 
   return (
     <ul className={"navbar-categories-list"} hidden={isHidden}>
       {data?.map((item, index) => (
-        <li key={index} onClick={() => navigate(`/categories/${item.id}`)}>
+        <li key={index} onClick={() => navigate(`/category/${item.id}`)}>
           {item.name}
         </li>
       ))}

@@ -3,6 +3,8 @@ import NavbarContainer from "./containers/NavbarContainer";
 import HomeContainer from "./containers/HomeContainer";
 import ItemListContainer from "./containers/ItemListContainer";
 import ItemDetailContainer from "./containers/ItemDetailContainer";
+import CartContainer from "./containers/CartContainer";
+import CategoryContainer from "./containers/CategoryContainer";
 
 function App() {
   return (
@@ -12,8 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="/search/:value" element={<ItemListContainer />} />
-          <Route path="/category/:id" element={<ItemListContainer />} />
+          <Route path="/category/:id" element={<CategoryContainer />} />
           <Route path="/item/:id" element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<CartContainer />} />
         </Routes>
       </BrowserRouter>
     </div>

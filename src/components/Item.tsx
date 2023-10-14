@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type TItemProps = {
   id: string;
@@ -8,8 +8,13 @@ type TItemProps = {
 };
 
 const Item = ({ id, title, thumbnail, price }: TItemProps) => {
+  const navigate = useNavigate();
+
   return (
-    <article className="flex flex-row border bg-[#FFFFFF] rounded-sm w-[70%] lg:w-[30%] pl-2 pr-10 py-5 m-auto">
+    <article
+      className="flex flex-row border bg-[#FFFFFF] rounded-sm w-[70%] lg:w-[30%] pl-2 pr-10 py-5 m-auto hover:cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
+      onClick={() => navigate(`/item/${id}`)}
+    >
       <img
         src={thumbnail}
         alt="Imagen del producto."
