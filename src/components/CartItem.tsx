@@ -8,9 +8,17 @@ type CartItem = {
   qty: number;
   stock: number;
   title: string;
+  cartOptions: boolean;
 };
 
-const CartItem: React.FC<CartItem> = ({ title, qty, image, price, id }) => {
+const CartItem: React.FC<CartItem> = ({
+  title,
+  qty,
+  image,
+  price,
+  id,
+  cartOptions,
+}) => {
   const dispatch = useDispatch();
 
   return (
@@ -24,33 +32,40 @@ const CartItem: React.FC<CartItem> = ({ title, qty, image, price, id }) => {
       </th>
 
       <th>
-        <button
-          className="inline px-1 border"
-          onClick={() => dispatch(removeQty(id))}
-        >
-          -
-        </button>
+        {cartOptions && (
+          <button
+            className="inline px-1 border"
+            onClick={() => dispatch(removeQty(id))}
+          >
+            -
+          </button>
+        )}
+
         <p className="inline px-4">{qty}</p>
-        <button
-          className="inline px-1 border"
-          onClick={() => dispatch(addQty(id))}
-        >
-          +
-        </button>
+        {cartOptions && (
+          <button
+            className="inline px-1 border"
+            onClick={() => dispatch(addQty(id))}
+          >
+            +
+          </button>
+        )}
       </th>
 
       <th>
         <p>$ {price}</p>
       </th>
 
-      <th>
-        <p
-          className="hover:cursor-pointer"
-          onClick={() => dispatch(removeItem(id))}
-        >
-          X
-        </p>
-      </th>
+      {cartOptions && (
+        <th>
+          <button
+            className="hover:cursor-pointer"
+            onClick={() => dispatch(removeItem(id))}
+          >
+            X
+          </button>
+        </th>
+      )}
     </tr>
   );
 };
