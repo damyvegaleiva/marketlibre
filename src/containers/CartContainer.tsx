@@ -24,7 +24,7 @@ const CartContainer: React.FC = () => {
 
         <tbody>
           {cart.map((item) => (
-            <CartItem key={item.id} {...item} cartOptions={true} />
+            <CartItem key={item.id} {...item} options={true} />
           ))}
         </tbody>
       </table>

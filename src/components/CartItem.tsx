@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addQty, removeItem, removeQty } from "../features/cart/cartSlice";
+import CartOptionsButton from "./CartOptions";
 
 type CartItem = {
   id: string;
@@ -8,7 +9,7 @@ type CartItem = {
   qty: number;
   stock: number;
   title: string;
-  cartOptions: boolean;
+  options: boolean;
 };
 
 const CartItem: React.FC<CartItem> = ({
@@ -17,7 +18,7 @@ const CartItem: React.FC<CartItem> = ({
   image,
   price,
   id,
-  cartOptions,
+  options,
 }) => {
   const dispatch = useDispatch();
 
@@ -32,23 +33,21 @@ const CartItem: React.FC<CartItem> = ({
       </th>
 
       <th>
-        {cartOptions && (
-          <button
-            className="inline px-1 border"
-            onClick={() => dispatch(removeQty(id))}
-          >
-            -
-          </button>
+        {options && (
+          <CartOptionsButton
+            className={"inline px-1 border"}
+            text={"-"}
+            functionToDispatch={() => dispatch(removeQty(id))}
+          />
         )}
 
         <p className="inline px-4">{qty}</p>
-        {cartOptions && (
-          <button
-            className="inline px-1 border"
-            onClick={() => dispatch(addQty(id))}
-          >
-            +
-          </button>
+        {options && (
+          <CartOptionsButton
+            className={"inline px-1 border"}
+            text={"+"}
+            functionToDispatch={() => dispatch(addQty(id))}
+          />
         )}
       </th>
 
@@ -56,14 +55,13 @@ const CartItem: React.FC<CartItem> = ({
         <p>$ {price}</p>
       </th>
 
-      {cartOptions && (
+      {options && (
         <th>
-          <button
-            className="hover:cursor-pointer"
-            onClick={() => dispatch(removeItem(id))}
-          >
-            X
-          </button>
+          <CartOptionsButton
+            className={"hover:cursor-pointer"}
+            text={"X"}
+            functionToDispatch={() => dispatch(removeItem(id))}
+          />
         </th>
       )}
     </tr>

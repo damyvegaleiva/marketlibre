@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 import { RootState } from "../app/store";
+import FormContainer from "./FormContainer";
 
 const CheckOutContainer = () => {
   const cart = useSelector((state: RootState) => state.cart.cart);
@@ -19,10 +20,12 @@ const CheckOutContainer = () => {
 
         <tbody>
           {cart.map((item) => (
-            <CartItem key={item.id} {...item} cartOptions={false} />
+            <CartItem key={item.id} {...item} options={false} />
           ))}
         </tbody>
       </table>
+
+      <FormContainer />
     </div>
   );
 };
