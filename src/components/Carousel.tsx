@@ -1,48 +1,19 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const pictures = [
-  { src: "electro.webp", alt: "Electrodomésticos varios.", cat: "MLA5726" },
-  {
-    src: "gaming.webp",
-    alt: "Teclado, auriculares y 2 controles.",
-    cat: "MLA1144",
-  },
-  {
-    src: "herramientas.jpg",
-    alt: "Selección variada de herramientas sobre una mesa de madera.",
-    cat: "MLA407134",
-  },
-  {
-    src: "autos.avif",
-    alt: "Autos varios en forma horizontal.",
-    cat: "MLA1743",
-  },
-];
+type CarouselProps = {
+  handleRightClick: (index: number) => void;
+  handleLeftClick: (index: number) => void;
+  index: number;
+  pictures: { src: string; alt: string; cat: string }[];
+};
 
-const Carousel = () => {
-  const [index, setIndex] = useState<number>(
-    Math.floor(Math.random() * pictures.length)
-  );
-
+const Carousel: React.FC<CarouselProps> = ({
+  handleLeftClick,
+  handleRightClick,
+  index,
+  pictures,
+}) => {
   const navigate = useNavigate();
-
-  const handleRightClick = (index: number) => {
-    if (index < pictures.length - 1) {
-      setIndex((prev) => prev + 1);
-      return;
-    }
-    setIndex(0);
-  };
-
-  const handleLeftClick = (index: number) => {
-    if (index > 0) {
-      setIndex((prev) => prev - 1);
-      return;
-    }
-
-    setIndex(pictures.length - 1);
-  };
 
   return (
     <div className="flex items-center justify-center gap-3 mt-10">

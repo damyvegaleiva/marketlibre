@@ -19,24 +19,34 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   }, [item, dispatch, cart.cart]);
 
   return (
-    <div className=" order-3 w-[400px] text-left self-stretch flex flex-col gap-10 border shadow-md rounded-md p-8">
+    <div className="order-3 w-[400px] text-left self-stretch flex flex-col  border shadow-md rounded-md p-8">
       <h2 className="text-xl font-bold">{item?.title}</h2>
-      <p className="mt-5 text-2xl">$ {item?.price}</p>
+
+      <div className="my-5">
+        {item?.original_price && (
+          <span className="text-gray-400 line-through">
+            $ {item.original_price}
+          </span>
+        )}
+        <p className="text-2xl ">$ {item?.price}</p>
+      </div>
 
       <div className="flex flex-col gap-2 text-sm text-gray-400">
         <p>- Disponible</p>
 
-        <p>
-          - Stock: {""}
-          {item?.available_quantity === 1 ? (
-            <>
-              {item.available_quantity}
-              <span className="text-red-400"> (Ultimo disponible!)</span>
-            </>
-          ) : (
-            <> {item?.available_quantity} </>
-          )}
-        </p>
+        {item?.available_quantity && (
+          <p>
+            - Stock: {""}
+            {item?.available_quantity === 1 ? (
+              <>
+                {item.available_quantity}
+                <span className="text-red-400"> (Ultimo disponible!)</span>
+              </>
+            ) : (
+              <> {item?.available_quantity} </>
+            )}
+          </p>
+        )}
 
         {item && item?.sold_quantity > 0 && (
           <p className="text-green">- Vendidos: {item.sold_quantity}</p>

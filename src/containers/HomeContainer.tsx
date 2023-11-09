@@ -1,4 +1,4 @@
-import Carousel from "../components/Carousel";
+import CarouselContainer from "./CarouselContainer";
 
 const HomeContainer: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const HomeContainer: React.FC = () => {
         BIENVENIDOS
       </h1>
 
-      <Carousel />
+      <CarouselContainer />
     </div>
   );
 };
