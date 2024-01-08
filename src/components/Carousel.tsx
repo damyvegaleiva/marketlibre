@@ -5,6 +5,7 @@ type CarouselProps = {
   handleLeftClick: (index: number) => void;
   index: number;
   pictures: { src: string; alt: string; cat: string }[];
+  effect: string;
 };
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -12,6 +13,7 @@ const Carousel: React.FC<CarouselProps> = ({
   handleRightClick,
   index,
   pictures,
+  effect,
 }) => {
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ const Carousel: React.FC<CarouselProps> = ({
       <img
         src={`./images/${pictures[index].src}`}
         alt={pictures[index].alt}
-        className="w-[1000px] h-[550px] object-cover hover:cursor-pointer rounded-md"
+        className={`w-[1000px] h-[550px] transition-all object-cover hover:cursor-pointer rounded-md ${effect}`}
         onClick={() => navigate(`/category/${pictures[index].cat}`)}
       />
 

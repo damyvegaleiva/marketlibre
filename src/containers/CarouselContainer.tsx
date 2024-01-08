@@ -25,22 +25,36 @@ const CarouselContainer: React.FC = () => {
     Math.floor(Math.random() * pictures.length)
   );
 
-  const handleRightClick = (index: number) => {
-    if (index < pictures.length - 1) {
-      setIndex((prev) => prev + 1);
-      return;
-    }
+  const [effect, setEffect] = useState<string>("opacity-1");
 
-    setIndex(0);
+  const handleRightClick = (index: number) => {
+    setEffect("opacity-0");
+
+    setTimeout(() => {
+      setEffect("opacity-1");
+
+      if (index < pictures.length - 1) {
+        setIndex((prev) => prev + 1);
+        return;
+      }
+
+      setIndex(0);
+    }, 250);
   };
 
   const handleLeftClick = (index: number) => {
-    if (index > 0) {
-      setIndex((prev) => prev - 1);
-      return;
-    }
+    setEffect("opacity-0");
 
-    setIndex(pictures.length - 1);
+    setTimeout(() => {
+      setEffect("opacity-1");
+
+      if (index > 0) {
+        setIndex((prev) => prev - 1);
+        return;
+      }
+
+      setIndex(pictures.length - 1);
+    }, 250);
   };
 
   return (
@@ -49,6 +63,7 @@ const CarouselContainer: React.FC = () => {
       handleLeftClick={handleLeftClick}
       index={index}
       pictures={pictures}
+      effect={effect}
     />
   );
 };
