@@ -12,12 +12,12 @@ type TCategoriesList = {
 };
 
 const CategoriesList = ({ isHidden }: TCategoriesListProps) => {
-  const { data }: TCategoriesList = useFetch(CATEGORIES_LIST_URL);
+  const { data: categories }: TCategoriesList = useFetch(CATEGORIES_LIST_URL);
   const navigate: NavigateFunction = useNavigate();
 
   return (
-    <ul className={"navbar-categories-list"} hidden={isHidden}>
-      {data?.map((item, index) => (
+    <ul className="navbar-categories-list" hidden={isHidden}>
+      {categories?.map((item, index) => (
         <li key={index} onClick={() => navigate(`/category/${item.id}`)}>
           {item.name}
         </li>

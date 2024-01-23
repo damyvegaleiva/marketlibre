@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 type CarouselProps = {
   handleRightClick: (index: number) => void;
@@ -16,12 +17,13 @@ const Carousel: React.FC<CarouselProps> = ({
   pictures,
   direction,
 }) => {
+  const [visibility, setVisibility] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const variants = {
     initial: (direction: number) => {
       return {
-        x: direction > 0 ? 1000 : -1000,
+        x: direction > 0 ? 2000 : -2000,
         opacity: 0,
       };
     },
@@ -41,7 +43,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
     exit: (direction: number) => {
       return {
-        x: direction > 0 ? -1000 : 1000,
+        x: direction > 0 ? -2000 : 2000,
         opacity: 0,
         transition: {
           x: {
@@ -56,9 +58,16 @@ const Carousel: React.FC<CarouselProps> = ({
   };
 
   return (
-    <div className="relative flex items-center justify-center w-2/3 md:w-1/2 max-w-[1200px] h-[500px] gap-3 mx-auto mt-4 overflow-hidden">
+    <div
+      className="relative flex items-center justify-center w-[95%] h-[300px] md:w-full xl:h-[450px] mx-auto overflow-hidden"
+      onMouseEnter={() => setVisibility((prev) => !prev)}
+      onMouseLeave={() => setVisibility((prev) => !prev)}
+    >
       <button
-        className="absolute w-11 h-20 rounded-r-full text-xl transition-all hover:shadow-xl translate-y-[-50%]  text-black font-bold duration-500  bg-white/70 opacity-70 top-[50%] hover:opacity-100 left-0 z-10 "
+        className={
+          "absolute w-8 h-14 md:w-16 md:h-[66px] rounded-r-full text-xl transition-all hover:shadow-xl translate-y-[-50%] text-blue-primary font-bold duration-500 bg-white top-[50%] left-0 z-10 " +
+          (visibility ? "md:visible" : "md:hidden")
+        }
         onClick={() => handleLeftClick(index)}
       >
         &lt;
@@ -75,12 +84,15 @@ const Carousel: React.FC<CarouselProps> = ({
           src={`./images/${pictures[index].src}`}
           alt={pictures[index].alt}
           onClick={() => navigate(`/category/${pictures[index].cat}`)}
-          className={`absolute transition-all object-cover hover:cursor-pointer rounded-md top-0 left-0 w-full h-full`}
+          className="absolute object-cover w-full h-full rounded-md md:w-2/3 lg:max-w-[1600px] hover:cursor-pointer"
         />
       </AnimatePresence>
 
       <button
-        className="absolute w-11 h-20 rounded-l-full text-xl transition-all hover:shadow-xl translate-y-[-50%]  text-black font-bold duration-500  bg-white/70 opacity-70 top-[50%] hover:opacity-100 right-0 z-10 "
+        className={
+          "absolute w-8 h-14 md:w-16 md:h-[66px] rounded-l-full text-xl transition-all hover:shadow-xl translate-y-[-50%] text-blue-primary font-bold duration-500 bg-white top-[50%] right-0 z-10 " +
+          (visibility ? "md:visible" : "md:hidden")
+        }
         onClick={() => handleRightClick(index)}
       >
         &gt;
