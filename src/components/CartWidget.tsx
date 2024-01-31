@@ -19,7 +19,7 @@ const CartWidget = () => {
         <h2>Ingresa</h2>
       </Link>
 
-      <Link to={"/cart"}>
+      <Link to={"/cart"} className="flex items-center">
         <BsCart2 className={"inline"} /> {cart.totalItems}
       </Link>
     </div>
