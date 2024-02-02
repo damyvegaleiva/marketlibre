@@ -8,7 +8,7 @@ import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 const NavbarContainer: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setIsOpen((prev) => !prev);
   };
 
@@ -34,8 +34,8 @@ const NavbarContainer: React.FC = () => {
 
         {(isOpen || window.innerWidth >= 768) && (
           <>
-            <NavbarList />
-            <CartWidget />
+            <NavbarList handleNavbarClick={handleClick} />
+            <CartWidget handleNavbarClick={handleClick} />
             <NavbarLogo
               url="https://www.disneyplus.com/"
               src="./images/disney.webp"

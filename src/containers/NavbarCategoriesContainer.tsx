@@ -2,7 +2,13 @@ import { useState } from "react";
 import { BsChevronCompactDown } from "react-icons/bs";
 import CategoriesList from "../components/CategoriesList";
 
-const NavbarCategoriesContainer = () => {
+type NavbarCategoriesContainerProps = {
+  handleNavbarClick: () => void;
+};
+
+const NavbarCategoriesContainer: React.FC<NavbarCategoriesContainerProps> = ({
+  handleNavbarClick,
+}) => {
   const [isHidden, setHidden] = useState<boolean>(true);
 
   const handleClick = () => {
@@ -10,9 +16,12 @@ const NavbarCategoriesContainer = () => {
   };
 
   return (
-    <li className="navbar-categories-container" onClick={handleClick}>
+    <li className="navbar-categories__container" onClick={handleClick}>
       Categorías <BsChevronCompactDown className={"inline"} />
-      <CategoriesList isHidden={isHidden} />
+      <CategoriesList
+        isHidden={isHidden}
+        handleNavbarClick={handleNavbarClick}
+      />
     </li>
   );
 };

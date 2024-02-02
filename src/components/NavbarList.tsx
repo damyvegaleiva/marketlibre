@@ -1,10 +1,14 @@
 import NavbarCategoriesContainer from "../containers/NavbarCategoriesContainer";
 
-const NavbarList = () => {
+type NavbarListProps = {
+  handleNavbarClick: () => void;
+};
+
+const NavbarList: React.FC<NavbarListProps> = ({ handleNavbarClick }) => {
   return (
     <ul className="navbar-list">
-      <NavbarCategoriesContainer />
-      <li>Ayuda</li>
+      <NavbarCategoriesContainer handleNavbarClick={handleNavbarClick} />
+      <li onClick={handleNavbarClick}>Ayuda</li>
     </ul>
   );
 };
