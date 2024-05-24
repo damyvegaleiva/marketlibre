@@ -16,7 +16,7 @@ const CarouselButton: React.FC<CarouselButtonProps> = ({
   return (
     <button
       className={
-        `absolute w-8 h-14 md:w-16 md:h-[65px] text-xl transition-all hover:shadow-xl translate-y-[-50%] text-blue-primary duration-500 bg-white top-[50%] z-10 ${sideClass} ` +
+        `absolute w-10 h-14 md:w-16 md:h-[65px] text-xl transition-all hover:shadow-xl translate-y-[-50%] text-blue-primary duration-500 bg-white top-[50%] z-10 ${sideClass} ` +
         (visibility ? "md:visible" : "md:hidden ")
       }
       onClick={() => handleClick(index)}

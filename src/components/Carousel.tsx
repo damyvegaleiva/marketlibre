@@ -22,7 +22,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div
-      className="relative flex items-center justify-center w-[95%] h-[300px] md:w-full xl:h-[450px] mx-auto overflow-hidden"
+      className="relative flex items-center justify-center w-full h-[300px] md:w-full xl:h-[450px] mx-auto overflow-hidden"
       onMouseEnter={() => setVisibility((prev) => !prev)}
       onMouseLeave={() => setVisibility((prev) => !prev)}
     >
