@@ -31,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({
         index={index}
         sideClass="left-0 rounded-r-full"
         visibility={visibility}
-        svg={<FaAngleLeft className="ml-8" />}
+        svg={<FaAngleLeft className="md:ml-8" />}
       />
 
       <CarouselSlider index={index} pictures={pictures} direction={direction} />
