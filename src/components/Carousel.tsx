@@ -29,9 +29,8 @@ const Carousel: React.FC<CarouselProps> = ({
       <CarouselButton
         handleClick={handleLeftClick}
         index={index}
+        sideClass="left-0 rounded-r-full"
         visibility={visibility}
-        buttonRounded="r"
-        buttonSide="left"
         svg={<FaAngleLeft className="ml-8" />}
       />
 
@@ -41,8 +40,7 @@ const Carousel: React.FC<CarouselProps> = ({
         handleClick={handleRightClick}
         index={index}
         visibility={visibility}
-        buttonRounded="l"
-        buttonSide="right"
+        sideClass="right-0 rounded-l-full"
         svg={<FaAngleRight className="ml-3" />}
       />
     </div>
