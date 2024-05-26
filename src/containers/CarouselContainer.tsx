@@ -1,60 +1,45 @@
-import { useState } from "react";
+import useCarousel from "../hooks/useCarousel";
 import Carousel from "../components/Carousel";
 
 const pictures = [
-  { src: "electro.webp", alt: "Electrodomésticos varios.", cat: "MLA5726" },
   {
-    src: "gaming.webp",
+    id: 1,
+    src: "./images/electro.webp",
+    alt: "Electrodomésticos varios.",
+    cat: "MLA5726",
+  },
+  {
+    id: 2,
+    src: "./images/gaming.webp",
     alt: "Teclado, auriculares y 2 controles.",
     cat: "MLA1144",
   },
   {
-    src: "herramientas.jpg",
+    id: 3,
+    src: "./images/herramientas.jpg",
     alt: "Selección variada de herramientas sobre una mesa de madera.",
     cat: "MLA407134",
   },
   {
-    src: "autos.avif",
+    id: 4,
+    src: "./images/autos.avif",
     alt: "Autos varios en forma horizontal.",
     cat: "MLA1743",
   },
 ];
 
 const CarouselContainer: React.FC = () => {
-  const [index, setIndex] = useState<number>(
-    Math.floor(Math.random() * pictures.length)
-  );
-  const [direction, setDirection] = useState<number>(0);
-
-  const handleRightClick = (index: number) => {
-    setDirection(1);
-
-    if (index < pictures.length - 1) {
-      setIndex((prev) => prev + 1);
-      return;
-    }
-
-    setIndex(0);
-  };
-
-  const handleLeftClick = (index: number) => {
-    setDirection(-1);
-
-    if (index > 0) {
-      setIndex((prev) => prev - 1);
-      return;
-    }
-
-    setIndex(pictures.length - 1);
-  };
+  const { index, direction, setIsHovered, handleClickNext, handleClickPrev } =
+    useCarousel(pictures.length);
 
   return (
     <Carousel
-      handleRightClick={handleRightClick}
-      handleLeftClick={handleLeftClick}
       index={index}
-      pictures={pictures}
       direction={direction}
+      setIsHovered={setIsHovered}
+      handleClickNext={handleClickNext}
+      handleClickPrev={handleClickPrev}
+      pictures={pictures}
     />
   );
 };

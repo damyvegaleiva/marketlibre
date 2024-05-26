@@ -1,6 +1,5 @@
 type CarouselButtonProps = {
-  handleClick: (index: number) => void;
-  index: number;
+  handleClick: () => void;
   visibility: boolean;
   sideClass: string;
   svg: React.ReactNode;
@@ -8,7 +7,6 @@ type CarouselButtonProps = {
 
 const CarouselButton: React.FC<CarouselButtonProps> = ({
   handleClick,
-  index,
   visibility,
   sideClass,
   svg,
@@ -19,7 +17,7 @@ const CarouselButton: React.FC<CarouselButtonProps> = ({
         `absolute w-10 h-14 md:w-16 md:h-[65px] text-xl transition-all hover:shadow-xl translate-y-[-50%] text-blue-primary duration-500 bg-white top-[50%] z-10 ${sideClass} ` +
         (visibility ? "md:visible" : "md:hidden ")
       }
-      onClick={() => handleClick(index)}
+      onClick={() => handleClick()}
     >
       {svg}
     </button>
