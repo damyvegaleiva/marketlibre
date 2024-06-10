@@ -12,7 +12,7 @@ const Item = ({ id, title, thumbnail, price }: TItemProps) => {
 
   return (
     <article
-      className="flex flex-row border bg-[#FFFFFF] rounded-sm w-[70%] lg:w-[30%] pl-2 pr-10 py-5 m-auto hover:cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
+      className="flex flex-row border bg-[#FFFFFF] rounded-sm w-full sm:w-[75%] md:w-[60%] lg:max-w-[800px] py-5 m-auto hover:cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
       onClick={() => navigate(`/item/${id}`)}
     >
       <img

@@ -19,16 +19,16 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   }, [item, dispatch, cart.cart]);
 
   return (
-    <div className="order-3 w-[400px] text-left self-stretch flex flex-col  border shadow-md rounded-md p-8">
-      <h2 className="text-xl font-bold">{item?.title}</h2>
+    <div className="flex flex-col order-4 px-2 w-[90%] m-auto text-left border rounded-md lg:py-2 lg:px-5 lg:h-[550px]">
+      <h2 className="hidden text-xl md:block">{item?.title}</h2>
 
       <div className="my-5">
         {item?.original_price && (
           <span className="text-gray-400 line-through">
-            $ {item.original_price}
+            ${item.original_price}
           </span>
         )}
-        <p className="text-2xl ">$ {item?.price}</p>
+        <p className="text-4xl">${item?.price}</p>
       </div>
 
       <div className="flex flex-col gap-2 text-sm text-gray-400">
@@ -60,7 +60,7 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
       </div>
 
       <button
-        className="px-5 py-2 mx-auto mt-auto text-white rounded-md bg-blue-primary text-md hover:bg-dark-blue"
+        className="w-[75%] max-w-[300px] text-m px-5 py-2 mx-auto mt-10 text-white rounded-md bg-blue-primary d hover:bg-dark-blue lg:mt-auto"
         onClick={() => dispatch(addToCart(item))}
       >
         Agregar al Carrito

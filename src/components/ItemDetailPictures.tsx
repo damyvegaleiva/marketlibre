@@ -11,7 +11,8 @@ const ItemDetailPictures: React.FC<ItemDetailPicturesProps> = ({
   const [picture, setPicture] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setPicture(pictures && pictures[0].url);
+    if (pictures) setPicture(pictures[0].url);
+
     return;
   }, [pictures]);
 
@@ -20,22 +21,24 @@ const ItemDetailPictures: React.FC<ItemDetailPicturesProps> = ({
   };
 
   return (
-    <>
-      <div className="flex flex-col self-start order-1 gap-y-2">
+    <div className="flex flex-col w-[90%] m-auto h-full gap-y-5 lg:flex-row lg:max-h-[500px] lg:gap-x-3 lg:max-w-[600px] overflow-hidden">
+      <figure className="order-1 w-[90%] h-96 m-auto lg:order-2">
+        <img src={picture} alt="" className="object-contain w-full h-full" />
+      </figure>
+
+      <div className="item-detail__scroll-bar overflow-x-scroll flex self-start flex-row flex-nowrap order-2 lg:overflow-x-hidden gap-x-2 lg:flex-col lg:max-h-[375px] lg:gap-y-3 lg:order-1 lg:border-2">
         {pictures?.map((pic) => (
-          <img
-            key={pic.id}
-            src={pic.url}
-            className="object-contain p-0.5 w-10 h-10 bg-white border-[0.3px] rounded-sm border-slate-500 hover:cursor-pointer"
-            onMouseEnter={() => handleHover(pic.url)}
-          />
+          <div className="w-16 h-16 border-[0.5px] border-slate-400 m-auto p-1 lg:hover:cursor-pointer lg:w-[40px] lg:h-[40px]">
+            <img
+              key={pic.id}
+              src={pic.url}
+              className="object-contain w-full h-full"
+              onMouseEnter={() => handleHover(pic.url)}
+            />
+          </div>
         ))}
       </div>
-
-      <figure className="self-center order-2 bg-white h-96 w-80">
-        <img src={picture} alt="" className="object-contain w-auto h-full" />
-      </figure>
-    </>
+    </div>
   );
 };
 
