@@ -1,10 +1,9 @@
-import React from "react";
-import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { useParams } from "react-router-dom";
 import { ITEM_URL } from "../config/config";
-import Spinner from "../components/Spinner";
 import { TDataItem } from "../types/types";
 import { ItemDetailAdapter } from "../adapters/ItemDetailAdapter";
+import Spinner from "../components/Spinner";
 import ItemDetail from "../components/ItemDetail";
 
 type TItemDetailContainer = {
