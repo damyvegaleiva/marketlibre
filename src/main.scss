@@ -13,12 +13,70 @@ body {
   &::-webkit-scrollbar {
     width: 7px;
     height: 15px;
-    background: #fff159;
-    background: gray;
+    background: rgba(150, 150, 150, 0.353);
+    border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background: #3483fa;
+  }
+}
+
+.scroll-container {
+  width: 100%;
+  height: 200px;
+  overflow: auto;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* Dirección por defecto: columna */
+}
+
+.content {
+  display: flex;
+  flex-direction: column; /* Dirección por defecto: columna */
+}
+
+.content img {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 5px;
+}
+
+/* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
+@media (max-width: 768px) {
+  .scroll-container {
+    flex-direction: row; /* Los elementos se alinean en una fila */
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .content {
+    flex-direction: row;
+    flex-wrap: nowrap; /* No permite el ajuste en varias filas */
+  }
+
+  .content img {
+    flex: 0 0 auto;
+  }
+}
+
+/* Estilos para pantallas de escritorio (mayores a 768px de ancho) */
+@media (min-width: 769px) {
+  .scroll-container {
+    flex-direction: column; /* Los elementos se alinean en una columna */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .content {
+    flex-direction: column;
+    flex-wrap: nowrap; /* No permite el ajuste en varias filas */
+  }
+
+  .content img {
+    flex: 0 0 auto;
   }
 }

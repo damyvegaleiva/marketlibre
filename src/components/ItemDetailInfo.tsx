@@ -19,8 +19,8 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   }, [item, dispatch, cart.cart]);
 
   return (
-    <div className="flex flex-col order-4 px-2 w-[90%] m-auto text-left border rounded-md lg:py-2 lg:px-5 lg:h-[550px]">
-      <h2 className="hidden text-xl md:block">{item?.title}</h2>
+    <div className="flex flex-col order-4 px-2 w-[90%] m-auto  text-left border rounded-md lg:py-2 lg:px-5 lg:h-[550px]">
+      <h2 className="hidden text-xl lg:block">{item?.title}</h2>
 
       <div className="my-5">
         {item?.original_price && (
