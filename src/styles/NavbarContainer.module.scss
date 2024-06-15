@@ -71,18 +71,7 @@ header {
       top: 1;
       left: -50px;
       overflow-y: scroll;
-      z-index: 11;
-
-      // &::before {
-      //   content: "";
-      //   position: absolute;
-      //   -moz-border-top-colors: 10px solid transparent;
-      //   border-bottom: 10px solid #000000;
-      //   border-left: 10px solid transparent;
-      //   border-right: 10px solid transparent;
-      //   top: -5px;
-      //   left: 76px;
-      // }
+      z-index: 1;
 
       &::-webkit-scrollbar {
         width: 9.5px;
@@ -103,6 +92,10 @@ header {
         }
       }
     }
+  }
+
+  .hide-on-mobile {
+    display: none;
   }
 }
 
@@ -136,14 +129,6 @@ header {
       }
     }
 
-    svg {
-      display: none;
-
-      &:last-child {
-        display: block;
-      }
-    }
-
     .navbar-disney {
       display: block;
       grid-area: disney;
@@ -154,6 +139,7 @@ header {
     }
 
     .navbar-list {
+      display: flex;
       grid-area: navlist;
       flex-flow: row;
       margin: 0;
@@ -177,8 +163,13 @@ header {
     }
 
     .navbar-cart {
+      display: flex;
       grid-area: cart;
       flex-flow: row wrap;
+    }
+
+    .hamburger-btn {
+      display: none;
     }
   }
 }

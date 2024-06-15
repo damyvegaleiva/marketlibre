@@ -3,19 +3,13 @@ import CartWidget from "../components/CartWidget";
 import NavbarList from "../components/NavbarList";
 import NavbarLogo from "../components/NavbarLogo";
 import NavbarSearch from "../components/NavbarSearch";
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+import NavbarHamburgerButton from "../components/NavbarHamburgerButton";
 
 const NavbarContainer: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleClick = (): void => {
     setIsOpen((prev) => !prev);
-  };
-
-  const checkIfOpenSvg = () => {
-    if (isOpen) return <RxCross1 size={30} onClick={handleClick} />;
-
-    return <RxHamburgerMenu size={30} onClick={handleClick} />;
   };
 
   return (
@@ -30,20 +24,24 @@ const NavbarContainer: React.FC = () => {
 
         <NavbarSearch />
 
-        {checkIfOpenSvg()}
+        <NavbarHamburgerButton isOpen={isOpen} handleClick={handleClick} />
 
-        {(isOpen || window.innerWidth >= 768) && (
-          <>
-            <NavbarList handleNavbarClick={handleClick} />
-            <CartWidget handleNavbarClick={handleClick} />
-            <NavbarLogo
-              url="https://www.disneyplus.com/"
-              src="./images/disney.webp"
-              alt="Disney Plus logo"
-              componentClass="navbar-disney"
-            />
-          </>
-        )}
+        <NavbarList
+          handleNavbarClick={handleClick}
+          className={isOpen ? "" : "hide-on-mobile"}
+        />
+
+        <CartWidget
+          handleNavbarClick={handleClick}
+          className={isOpen ? "" : "hide-on-mobile"}
+        />
+
+        <NavbarLogo
+          url="https://www.disneyplus.com/"
+          src="./images/disney.webp"
+          alt="Disney Plus logo"
+          componentClass={`navbar-disney`}
+        />
       </nav>
     </header>
   );

@@ -7,9 +7,13 @@ import { setTotalItems } from "../features/cart/cartSlice";
 
 type CartWidgetProps = {
   handleNavbarClick: () => void;
+  className: string;
 };
 
-const CartWidget: React.FC<CartWidgetProps> = ({ handleNavbarClick }) => {
+const CartWidget: React.FC<CartWidgetProps> = ({
+  handleNavbarClick,
+  className,
+}) => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
@@ -18,7 +22,7 @@ const CartWidget: React.FC<CartWidgetProps> = ({ handleNavbarClick }) => {
   }, [cart.cart, dispatch]);
 
   return (
-    <div className="flex gap-4 navbar-cart">
+    <div className={`flex gap-4 navbar-cart ${className}`}>
       <Link to={"/login"} onClick={handleNavbarClick}>
         <h2>Ingresa</h2>
       </Link>
