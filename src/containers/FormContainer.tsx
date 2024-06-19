@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import FormInput from "../components/FormInput";
+import FormInput from "../components/form/FormInput";
 
 type TInitialState = {
   nombre: string;

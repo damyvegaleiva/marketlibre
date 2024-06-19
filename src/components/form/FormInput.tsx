@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { TErrors } from "../containers/FormContainer";
+import { TErrors } from "../../containers/FormContainer";
 
 type FormInputProps = {
   label: string;

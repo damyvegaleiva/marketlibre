@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TDataItemPictures } from "../types/types";
-import PicturesList from "../components/PicturesList";
-import PictureDisplay from "../components/PictureDisplay";
+import PicturesList from "../components/item/pictures/PicturesList";
+import PictureDisplay from "../components/item/pictures/PictureDisplay";
 
 type ItemDetailPicturesProps = {
   pictures: TDataItemPictures[] | undefined;

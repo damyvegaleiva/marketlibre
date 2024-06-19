@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BsChevronCompactDown } from "react-icons/bs";
-import CategoriesList from "../components/CategoriesList";
+import CategoriesList from "../components/categories/CategoriesList";
 
 type NavbarCategoriesContainerProps = {
   handleNavbarClick: () => void;

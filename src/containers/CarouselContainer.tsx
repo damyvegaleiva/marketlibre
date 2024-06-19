@@ -1,5 +1,5 @@
 import useCarousel from "../hooks/useCarousel";
-import Carousel from "../components/Carousel";
+import Carousel from "../components/carousel/Carousel";
 
 const pictures = [
   {

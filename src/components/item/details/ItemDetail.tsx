@@ -1,6 +1,6 @@
-import ItemDetailPicturesListContainer from "../containers/ItemDetailPicturesListContainer";
-import { TDataItem } from "../types/types";
+import { TDataItem } from "../../../types/types";
 import ItemDetailInfo from "./ItemDetailInfo";
+import ItemDetailPicturesListContainer from "../../../containers/ItemDetailPicturesListContainer";
 
 type TItemDetail = {
   item: TDataItem | undefined;

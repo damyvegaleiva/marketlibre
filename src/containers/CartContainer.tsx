@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import CartItem from "../components/CartItem";
+import CartItem from "../components/cart/CartItem";
 import { Link } from "react-router-dom";
 
 const CartContainer: React.FC = () => {

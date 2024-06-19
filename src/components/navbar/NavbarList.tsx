@@ -1,4 +1,4 @@
-import NavbarCategoriesContainer from "../containers/NavbarCategoriesContainer";
+import NavbarCategoriesContainer from "../../containers/NavbarCategoriesContainer";
 
 type NavbarListProps = {
   handleNavbarClick: () => void;

@@ -1,7 +1,7 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { CATEGORIES_LIST_URL } from "../config/config";
-import useFetch from "../hooks/useFetch";
-import { TCategoryData } from "../types/types";
+import { CATEGORIES_LIST_URL } from "../../config/config";
+import useFetch from "../../hooks/useFetch";
+import { TCategoryData } from "../../types/types";
 
 type TCategoriesListProps = {
   isHidden: boolean;

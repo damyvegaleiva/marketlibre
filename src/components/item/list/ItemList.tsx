@@ -1,5 +1,5 @@
-import { ItemListAdapter } from "../adapters/ItemListAdapter";
-import { TDataSearch } from "../types/types";
+import { ItemListAdapter } from "../../../adapters/ItemListAdapter";
+import { TDataSearch } from "../../../types/types";
 import Item from "./Item";
 
 type TItemListProps = {

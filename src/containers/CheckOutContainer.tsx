@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import CartItem from "../components/CartItem";
+import CartItem from "../components/cart/CartItem";
 import { RootState } from "../app/store";
 import FormContainer from "./FormContainer";
 

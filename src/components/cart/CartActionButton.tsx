@@ -1,10 +1,10 @@
-type CartOptionsButtonProps = {
+type CartActionButtonProps = {
   text: string;
   className: string;
   functionToDispatch: () => void;
 };
 
-const CartOptionsButton: React.FC<CartOptionsButtonProps> = ({
+const CartActionButton: React.FC<CartActionButtonProps> = ({
   text,
   className,
   functionToDispatch,
@@ -16,4 +16,4 @@ const CartOptionsButton: React.FC<CartOptionsButtonProps> = ({
   );
 };
 
-export default CartOptionsButton;
+export default CartActionButton;

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CartWidget from "../components/CartWidget";
-import NavbarList from "../components/NavbarList";
-import NavbarLogo from "../components/NavbarLogo";
-import NavbarSearch from "../components/NavbarSearch";
-import NavbarHamburgerButton from "../components/NavbarHamburgerButton";
+import NavbarLogo from "../components/navbar/NavbarLogo";
+import NavbarSearch from "../components/navbar/NavbarSearch";
+import NavbarHamburgerButton from "../components/navbar/NavbarHamburgerButton";
+import NavbarList from "../components/navbar/NavbarList";
+import CartWidget from "../components/cart/CartWidget";
 
 const NavbarContainer: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

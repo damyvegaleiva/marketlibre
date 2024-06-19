@@ -4,7 +4,7 @@ import { ITEM_URL } from "../config/config";
 import { TDataItem } from "../types/types";
 import { ItemDetailAdapter } from "../adapters/ItemDetailAdapter";
 import Spinner from "../components/Spinner";
-import ItemDetail from "../components/ItemDetail";
+import ItemDetail from "../components/item/details/ItemDetail";
 
 type TItemDetailContainer = {
   data: TDataItem | null;
