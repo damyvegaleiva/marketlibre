@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { TDataSearch } from "../types/types";
 import { ITEM_SEARCH_URL } from "../config/config";
 import ItemList from "../components/item/list/ItemList";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner/Spinner";
 
 type TItemListContainer = {
   data: TDataSearch | null;
