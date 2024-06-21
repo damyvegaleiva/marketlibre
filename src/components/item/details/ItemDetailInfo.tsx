@@ -2,9 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsInCart } from "../../../features/cart/cartSlice";
 import { TDataItem } from "../../../types/types";
 import { RootState } from "../../../app/store";
-
 import { useEffect } from "react";
-import CartActions from "../../cart/CartActions";
+import ItemDetailActions from "./ItemDetailActions";
 
 type TItemDetail = {
   item: TDataItem | undefined;
@@ -22,8 +21,9 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   }, [item, dispatch, cart.cart]);
 
   return (
-    <div className="flex flex-col order-4 px-2 w-[90%] m-auto  text-left border rounded-md lg:py-2 lg:px-5 lg:h-[550px]">
+    <div className="flex flex-col order-4 px-2 w-[90%] m-auto text-left border rounded-md lg:py-2 lg:px-5 lg:h-[550px]">
       <h2 className="hidden text-xl lg:block">{item?.title}</h2>
+
       <div className="my-5">
         {item?.original_price && (
           <span className="text-gray-400 line-through">
@@ -32,6 +32,7 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
         )}
         <p className="text-4xl">${item?.price}</p>
       </div>
+
       <div className="flex flex-col gap-2 text-sm text-gray-400">
         <p>- Disponible</p>
 
@@ -60,7 +61,7 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
         </p>
       </div>
 
-      <CartActions isInCart={isInCart} item={item} />
+      <ItemDetailActions isInCart={isInCart} item={item} />
     </div>
   );
 };

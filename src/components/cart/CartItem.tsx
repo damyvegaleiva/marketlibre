@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addQty, removeItem, removeQty } from "../../features/cart/cartSlice";
-import CartOptionsButton from "./CartActionButton";
+import CartOptionsButton from "../item/details/ItemDetailActionButton";
 
 type CartItem = {
   id: string;
