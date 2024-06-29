@@ -12,7 +12,6 @@ type TItemDetail = {
 const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
-  const isInCart = !!cart.cart.find((itemInCart) => itemInCart.id === item?.id);
 
   useEffect(() => {
     if (item) {
@@ -61,7 +60,7 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
         </p>
       </div>
 
-      <ItemDetailActions isInCart={isInCart} item={item} />
+      <ItemDetailActions isInCart={cart.isInCart} item={item} />
     </div>
   );
 };

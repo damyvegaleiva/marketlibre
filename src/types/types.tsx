@@ -1,3 +1,26 @@
+import { z } from "zod";
+
+export type TPurchaseSchema = z.infer<typeof purchaseSchema>;
+
+export const purchaseSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Ingresa un nombre")
+    .regex(/^[a-zA-Z\s]*$/, "Nombre solo puede contener letras"),
+
+  last_name: z
+    .string()
+    .min(1, "Ingresa un apellido")
+    .regex(/^[a-zA-Z\s]*$/, "Apellido solo puede contener letras"),
+
+  email: z.string().email({ message: "Ingresa un email valido" }),
+
+  phone: z
+    .string()
+    .min(1, "Ingresa un numero de telefono")
+    .regex(/^[0-9]+$/, "Telefono solo puede contener números"),
+});
+
 export type TCategoryData = {
   id: string;
   name: string;

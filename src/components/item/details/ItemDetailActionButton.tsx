@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 type ItemDetailActionButtonProps = {
   className: string;
-  functionToDispatch: () => void;
+  functionToDispatch?: () => void;
   text: string;
 };
 
