@@ -30,25 +30,26 @@ const CartItem: React.FC<CartItem> = ({
         </h2>
       </th>
 
-      {options && (
-        <th>
-          <div className="flex justify-center">
+      <th>
+        <div className="flex justify-center">
+          {options && (
             <CartButton
               className="p-1.5 text-sm text-white border bg-blue-primary"
               operator="-"
               id={id}
             />
+          )}
 
-            <span className="inline p-2">{qty}</span>
-
+          <span className="inline p-2">{qty}</span>
+          {options && (
             <CartButton
               className="p-1.5 text-sm text-white border bg-blue-primary"
               operator="+"
               id={id}
             />
-          </div>
-        </th>
-      )}
+          )}
+        </div>
+      </th>
 
       <th>
         <span className="px-3 text-sm md:text-base">${price}</span>
