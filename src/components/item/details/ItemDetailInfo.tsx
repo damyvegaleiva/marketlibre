@@ -11,13 +11,15 @@ type TItemDetail = {
 
 const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
   const dispatch = useDispatch();
-  const cart = useSelector((state: RootState) => state.cart);
+  const isInCart = useSelector((state: RootState) =>
+    item ? state.cart.isInCart[item.id] : false
+  );
 
   useEffect(() => {
     if (item) {
       dispatch(setIsInCart(item.id));
     }
-  }, [item, dispatch, cart.cart]);
+  }, [item, dispatch]);
 
   return (
     <div className="flex flex-col order-4 px-2 w-[90%] m-auto text-left border rounded-md lg:py-2 lg:px-5 lg:h-[550px]">
@@ -41,7 +43,7 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
             {item?.available_quantity === 1 ? (
               <>
                 {item.available_quantity}
-                <span className="text-red-400"> (Ultimo disponible!)</span>
+                <span className="text-red-400"> (Último disponible!)</span>
               </>
             ) : (
               <> {item?.available_quantity} </>
@@ -60,7 +62,7 @@ const ItemDetailInfo: React.FC<TItemDetail> = ({ item }) => {
         </p>
       </div>
 
-      <ItemDetailActions isInCart={cart.isInCart} item={item} />
+      <ItemDetailActions isInCart={isInCart} item={item} />
     </div>
   );
 };

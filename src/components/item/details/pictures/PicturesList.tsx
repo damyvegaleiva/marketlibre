@@ -1,4 +1,4 @@
-import { TDataItemPictures } from "../../../types/types";
+import { TDataItemPictures } from "../../../../types/types";
 
 type PicturesListProps = {
   pictures: TDataItemPictures[] | undefined;

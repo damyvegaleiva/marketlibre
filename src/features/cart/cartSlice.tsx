@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-// import type { PayloadAction } from "@reduxjs/toolkit";
 
 type CartItem = {
   id: string;
@@ -13,14 +12,14 @@ type CartItem = {
 
 export interface CartState {
   cart: CartItem[];
-  isInCart: boolean;
+  isInCart: { [key: string]: boolean }; // OBJECT TO TRACK ITEMS IN CART
   totalItems: number;
   totalPrice: number;
 }
 
 const initialState: CartState = {
   cart: [],
-  isInCart: false,
+  isInCart: {},
   totalItems: 0,
   totalPrice: 0,
 };
@@ -37,19 +36,21 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    // CHEQUEA SI YA EXISTE EN CARRITO.
+    // CHECK IF ITEM IS ALREADY IN THE CART
     setIsInCart: (state, action) => {
-      state.isInCart = state.cart.some((item) => item.id === action.payload);
+      state.isInCart[action.payload] = state.cart.some(
+        (item) => item.id === action.payload
+      );
     },
 
-    //AGREGA ITEM AL CARRITO, SI YA EXISTE SUMA CANTIDAD AL ITEM.
+    // ADD ITEM TO THE CART, OR INCREASE THE QUANTITY IF IT ALREADY EXISTS
     addToCart: (state, action) => {
       const isInCart = state.cart.find((item) => item.id === action.payload.id);
 
       const notify = (title: string) =>
         toast.info(title, {
           position: toast.POSITION.TOP_RIGHT,
-          autoClose: 1000,
+          autoClose: 750,
         });
 
       if (isInCart) {
@@ -68,35 +69,42 @@ export const cartSlice = createSlice({
           title: action.payload.title,
           image: action.payload.thumbnail,
           price: action.payload.price,
-          stock: action.payload.available_quantity,
+          stock: action.payload.stock,
           qty: 1,
         });
 
-        notify("Item agregado al carrito");
+        notify("Item agregado al carrito.");
       }
 
-      // Update total items and total price
+      // UPDATE TOTAL ITEMS AND TOTAL PRICE
       state.totalItems = calculateTotalItems(state.cart);
       state.totalPrice = calculateTotalPrice(state.cart);
+
+      // UPDATE THE ISINCART STATE
+      state.isInCart[action.payload.id] = true;
     },
 
-    //REMUEVE ITEM EN CARRITO.
+    // REMOVE ITEM FROM THE CART
     removeItem: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
 
-      // Update total items and total price
+      // UPDATE TOTAL ITEMS AND TOTAL PRICE
       state.totalItems = calculateTotalItems(state.cart);
       state.totalPrice = calculateTotalPrice(state.cart);
+
+      // UPDATE THE ISINCART STATE
+      state.isInCart[action.payload] = false;
     },
 
-    //LIMPIA EL CARRITO.
+    // CLEAR THE CART
     clearCart: (state) => {
       state.cart = [];
       state.totalItems = 0;
       state.totalPrice = 0;
+      state.isInCart = {};
     },
 
-    //AGREGA CANTIDAD AL ITEM.
+    // ADD QUANTITY TO ITEM
     addQty: (state, action) => {
       state.cart = state.cart.map((item) =>
         item.id === action.payload && item.qty < item.stock
@@ -104,12 +112,12 @@ export const cartSlice = createSlice({
           : { ...item }
       );
 
-      // Update total items and total price
+      // UPDATE TOTAL ITEMS AND TOTAL PRICE
       state.totalItems = calculateTotalItems(state.cart);
       state.totalPrice = calculateTotalPrice(state.cart);
     },
 
-    //REMUEVE CANTIDAD DEL ITEM.
+    // REMOVE QUANTITY FROM ITEM
     removeQty: (state, action) => {
       state.cart = state.cart.map((item) =>
         item.id === action.payload && item.qty > 1
@@ -117,14 +125,14 @@ export const cartSlice = createSlice({
           : { ...item }
       );
 
-      // Update total items and total price
+      // UPDATE TOTAL ITEMS AND TOTAL PRICE
       state.totalItems = calculateTotalItems(state.cart);
       state.totalPrice = calculateTotalPrice(state.cart);
     },
   },
 });
 
-// Action creators are generated for each case reducer function
+// ACTION CREATORS ARE GENERATED FOR EACH CASE REDUCER FUNCTION
 export const {
   addToCart,
   setIsInCart,
