@@ -5,7 +5,7 @@ import {
   FieldErrors,
 } from "react-hook-form";
 import FormInput from "../components/form/FormInput";
-import FormActions from "../components/form/FormActions";
+import FormSubmitButton from "../components/form/FormSubmitButton";
 
 type FormContainerProps = {
   handleSubmit: UseFormHandleSubmit<TPurchaseSchema>;
@@ -25,9 +25,9 @@ const FormContainer: React.FC<FormContainerProps> = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-start  gap-2 w-[600px] bg-white mt-10 border-2 border-sky-300 lg:mt-0"
+      className="flex flex-col items-center pt-8 pb-2 w-[95%] lg:w-[50%] gap-2 bg-white lg:m-auto lg:mt-0 max-w-[800px] rounded-lg shadow-2xl mt-10"
     >
-      <h2 className="font-semibold underline">Información personal: </h2>
+      <h2 className="mb-5 font-semibold underline">Información personal:</h2>
 
       <FormInput
         type="name"
@@ -61,7 +61,7 @@ const FormContainer: React.FC<FormContainerProps> = ({
         errors={errors}
       />
 
-      <FormActions isSubmitting={isSubmitting} />
+      <FormSubmitButton isSubmitting={isSubmitting} />
     </form>
   );
 };

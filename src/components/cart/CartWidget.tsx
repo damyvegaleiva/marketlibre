@@ -1,9 +1,7 @@
 import { BsCart2 } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../app/store";
-import { useEffect } from "react";
-import { setTotalItems } from "../../features/cart/cartSlice";
 
 type CartWidgetProps = {
   handleNavbarClick: () => void;
@@ -15,11 +13,6 @@ const CartWidget: React.FC<CartWidgetProps> = ({
   className,
 }) => {
   const cart = useSelector((state: RootState) => state.cart);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setTotalItems());
-  }, [cart.cart, dispatch]);
 
   return (
     <div className={`flex gap-4 navbar-cart ${className}`}>

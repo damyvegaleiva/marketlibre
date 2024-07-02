@@ -10,11 +10,12 @@ import { addDoc, collection } from "firebase/firestore";
 import { clearCart } from "../features/cart/cartSlice";
 import CartItem from "../components/cart/CartItem";
 import FormContainer from "./FormContainer";
+import CartEmptyWidget from "../components/cart/CartEmptyWidget";
 
 const CheckOutContainer = () => {
   const [orderId, setOrderId] = useState<string>("");
   const [countdown, setCountdown] = useState<number>(15);
-  const cart = useSelector((state: RootState) => state.cart.cart);
+  const cart = useSelector((state: RootState) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,7 +42,7 @@ const CheckOutContainer = () => {
     const orderRef = collection(db, "orders");
     const orderAdded = await addDoc(orderRef, {
       ...data,
-      cart: cart.map((item) => {
+      cart: cart.cart.map((item) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { stock, image, ...rest } = item;
         return { ...rest };
@@ -65,6 +66,8 @@ const CheckOutContainer = () => {
     navigate("/");
   };
 
+  if (cart.cart.length < 1) return <CartEmptyWidget />;
+
   if (orderId) {
     return (
       <div className="grid place-content-center place-items-center bg-white h-[500px] m-auto gap-8">
@@ -81,27 +84,31 @@ const CheckOutContainer = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-5 bg-white lg:flex-row lg:mt-10 lg:py-10">
-      <h2 className="text-2xl font-semibold underline uppercase">
-        Detalles de la compra
-      </h2>
+    <div className="flex flex-col items-center justify-center gap-5 pb-16 bg-gray-200 rounded-xl lg:flex-row">
+      <div className="w-[95%] m-auto bg-white lg:order-2 lg:w-[50%] shadow-2xl mt-5 lg:mt-0 max-w-[900px]">
+        <h2 className="py-10 text-lg text-center underline uppercase lg:text-2xl">
+          Detalles de la compra
+        </h2>
 
-      <table className="w-[95%] m-auto mt-1 bg-white border-2 border-blue-500 lg:order-2 lg:w-1/3">
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>Titulo</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
+        <table className="m-auto">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Titulo</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {cart.map((item) => (
-            <CartItem key={item.id} {...item} options={false} />
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {cart.cart.map((item) => (
+              <CartItem key={item.id} {...item} options={false} />
+            ))}
+            <th className="py-10"></th>
+            <th>TOTAL:</th>
+            <th>{cart.totalPrice}</th>
+          </tbody>
+        </table>
+      </div>
 
       <FormContainer
         onSubmit={onSubmit}

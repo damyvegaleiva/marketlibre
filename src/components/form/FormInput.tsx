@@ -22,9 +22,13 @@ const FormInput: React.FC<FormInputProps> = ({
         type={type}
         placeholder={placeHolder}
         {...register(name)}
-        className="py-1 pl-3 border-2 rounded-md border-sky-200 w-[85%]"
+        className="w-[95%] py-1 pl-3 border-2 rounded-md"
       />
-      {errors[name] && <p className="text-red-500">{errors[name]?.message}</p>}
+      {errors[name] && (
+        <p className="text-red-500 w-[95%] pb- pl-1 mb-5">
+          {errors[name]?.message}
+        </p>
+      )}
     </>
   );
 };

@@ -15,12 +15,22 @@ export interface CartState {
   cart: CartItem[];
   isInCart: boolean;
   totalItems: number;
+  totalPrice: number;
 }
 
 const initialState: CartState = {
   cart: [],
   isInCart: false,
   totalItems: 0,
+  totalPrice: 0,
+};
+
+const calculateTotalPrice = (cart: CartState["cart"]) => {
+  return cart.reduce((total, item) => total + item.qty * item.price, 0);
+};
+
+const calculateTotalItems = (cart: CartState["cart"]) => {
+  return cart.reduce((total, item) => total + item.qty, 0);
 };
 
 export const cartSlice = createSlice({
@@ -30,21 +40,6 @@ export const cartSlice = createSlice({
     // CHEQUEA SI YA EXISTE EN CARRITO.
     setIsInCart: (state, action) => {
       state.isInCart = state.cart.some((item) => item.id === action.payload);
-
-      return;
-    },
-
-    // SUMA TOTAL DE ITEMS EN EL CARRITO.
-    setTotalItems: (state) => {
-      let count = 0;
-
-      state.cart.map((item) => {
-        count += item.qty;
-      });
-
-      state.totalItems = count;
-
-      return;
     },
 
     //AGREGA ITEM AL CARRITO, SI YA EXISTE SUMA CANTIDAD AL ITEM.
@@ -67,31 +62,38 @@ export const cartSlice = createSlice({
           notify("No hay mas disponibilidad en stock.");
           return { ...item };
         });
+      } else {
+        state.cart.push({
+          id: action.payload.id,
+          title: action.payload.title,
+          image: action.payload.thumbnail,
+          price: action.payload.price,
+          stock: action.payload.available_quantity,
+          qty: 1,
+        });
 
-        return;
+        notify("Item agregado al carrito");
       }
 
-      state.cart.push({
-        id: action.payload.id,
-        title: action.payload.title,
-        image: action.payload.thumbnail,
-        price: action.payload.price,
-        stock: action.payload.available_quantity,
-        qty: 1,
-      });
-
-      notify("Item agregado al carrito");
+      // Update total items and total price
+      state.totalItems = calculateTotalItems(state.cart);
+      state.totalPrice = calculateTotalPrice(state.cart);
     },
 
     //REMUEVE ITEM EN CARRITO.
     removeItem: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
-      return;
+
+      // Update total items and total price
+      state.totalItems = calculateTotalItems(state.cart);
+      state.totalPrice = calculateTotalPrice(state.cart);
     },
 
     //LIMPIA EL CARRITO.
     clearCart: (state) => {
       state.cart = [];
+      state.totalItems = 0;
+      state.totalPrice = 0;
     },
 
     //AGREGA CANTIDAD AL ITEM.
@@ -101,6 +103,10 @@ export const cartSlice = createSlice({
           ? { ...item, qty: item.qty + 1 }
           : { ...item }
       );
+
+      // Update total items and total price
+      state.totalItems = calculateTotalItems(state.cart);
+      state.totalPrice = calculateTotalPrice(state.cart);
     },
 
     //REMUEVE CANTIDAD DEL ITEM.
@@ -110,6 +116,10 @@ export const cartSlice = createSlice({
           ? { ...item, qty: item.qty - 1 }
           : { ...item }
       );
+
+      // Update total items and total price
+      state.totalItems = calculateTotalItems(state.cart);
+      state.totalPrice = calculateTotalPrice(state.cart);
     },
   },
 });
@@ -118,7 +128,6 @@ export const cartSlice = createSlice({
 export const {
   addToCart,
   setIsInCart,
-  setTotalItems,
   addQty,
   removeQty,
   removeItem,
