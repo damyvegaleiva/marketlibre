@@ -64,9 +64,10 @@ const CheckOutContainer = () => {
 
     await new Promise((resolve) => setTimeout(resolve, 15000));
     navigate("/");
+    setOrderId("");
   };
 
-  if (cart.cart.length < 1) return <CartEmptyWidget />;
+  if (cart.cart.length < 1 && !orderId) return <CartEmptyWidget />;
 
   if (orderId) {
     return (
