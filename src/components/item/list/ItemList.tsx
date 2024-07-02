@@ -10,7 +10,7 @@ const ItemList: React.FC<TItemListProps> = ({ fetchedData }) => {
   const data = ItemListAdapter(fetchedData);
 
   return (
-    <div className="flex flex-col items-stretch justify-center m-auto w-[100%] gap-1">
+    <div className="flex flex-col items-stretch justify-center m-auto w-[100%]">
       {data?.map((item) => (
         <ItemContainer key={item.id} item={item} />
       ))}
