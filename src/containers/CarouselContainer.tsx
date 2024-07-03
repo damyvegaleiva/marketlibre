@@ -16,9 +16,9 @@ const pictures = [
   },
   {
     id: 3,
-    src: "./images/herramientas.jpg",
-    alt: "Selección variada de herramientas sobre una mesa de madera.",
-    cat: "MLA407134",
+    src: "./images/instruments.jpg",
+    alt: "Instrumentos varios.",
+    cat: "MLA1182",
   },
   {
     id: 4,
