@@ -7,14 +7,16 @@ type TItemInfo = {
 };
 
 const ItemInfo: React.FC<TItemInfo> = ({ item }) => {
+  const baseUrl = `/item/${item.id}?qty=${item.available_quantity}&price=${item.price}`;
+
+  const finalUrl = `${baseUrl}${
+    item.original_price !== null && `&og_price=${item.original_price}`
+  }`;
+
   return (
     <div className="flex flex-col items-start justify-between px-4">
       <h2 className="text-sm lg:text-lg">
-        <Link
-          to={`/item/${item.id}?qty=${item.available_quantity}&price=${item.price}&og_price=${item.original_price}`}
-        >
-          {item.title}
-        </Link>
+        <Link to={finalUrl}>{item.title}</Link>
       </h2>
 
       <div className="my-5">
