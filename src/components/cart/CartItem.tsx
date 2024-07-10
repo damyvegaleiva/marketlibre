@@ -19,8 +19,9 @@ const CartItem: React.FC<CartItem> = ({
   options,
   stock,
 }) => {
+  console.log(stock);
   return (
-    <tr className="border-[0.5px]">
+    <tr className="border-[0.5px] h-[125px]">
       <th className="p-2">
         <img src={image} alt="" className="w-[100px]" />
       </th>
@@ -32,32 +33,38 @@ const CartItem: React.FC<CartItem> = ({
       </th>
 
       <th>
-        <div className="flex justify-between">
-          {options && (
+        {options ? (
+          <div className="relative flex items-center justify-between">
             <CartButton
               className="p-1.5 text-sm text-white border bg-blue-primary"
               operator="-"
               id={id}
             />
-          )}
 
-          <span className="inline mt-auto mb-auto">{qty}</span>
-          {options && (
+            <span className="inline mt-auto mb-auto">{qty}</span>
+
             <CartButton
               className="p-1.5 text-sm text-white border bg-blue-primary"
               operator="+"
               id={id}
             />
-          )}
-        </div>
-        {stock === 1 && (
-          <span className="text-xs text-red-400">(Último disponible)</span>
-        )}
 
-        {stock > 1 && qty === stock ? (
-          <span className="text-xs text-red-400">(No hay mas en stock)</span>
+            {options && stock === 1 && (
+              <span className="absolute text-[0.6rem] text-red-400 top-full inset-0 mt-1 w-full text-center">
+                (Último disponible)
+              </span>
+            )}
+
+            {options && stock > 1 && stock === qty && (
+              <span className="absolute text-[0.6rem] text-red-400 top-full inset-0 mt-1 w-full text-center">
+                (No hay más en stock)
+              </span>
+            )}
+          </div>
         ) : (
-          <span></span>
+          <div>
+            <span className="inline mt-auto mb-auto">{qty}</span>
+          </div>
         )}
       </th>
 

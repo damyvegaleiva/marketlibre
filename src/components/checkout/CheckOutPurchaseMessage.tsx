@@ -18,8 +18,8 @@ const CheckOutPurchaseMessage: React.FC<TCheckOutPurchaseMessageProps> = ({
   }, []);
 
   return (
-    <div className="grid place-content-center place-items-center bg-white h-[500px] m-auto gap-8">
-      <h2 className="text-xl ">
+    <div className="flex flex-col items-center justify-around h-screen gap-10 text-center bg-white">
+      <h2 className="text-xl">
         Gracias por tu compra. El ID de tu compra es:
         <span className="ml-1 font-semibold underline">{orderId}</span>
       </h2>
