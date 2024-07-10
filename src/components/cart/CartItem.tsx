@@ -19,7 +19,6 @@ const CartItem: React.FC<CartItem> = ({
   options,
   stock,
 }) => {
-  console.log(stock);
   return (
     <tr className="border-[0.5px] h-[125px]">
       <th className="p-2">
