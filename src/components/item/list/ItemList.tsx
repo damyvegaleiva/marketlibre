@@ -9,6 +9,13 @@ type TItemListProps = {
 const ItemList: React.FC<TItemListProps> = ({ fetchedData }) => {
   const data = ItemListAdapter(fetchedData);
 
+  if (data?.length === 0)
+    return (
+      <h2 className="mt-40 text-2xl text-center">
+        No se encontraron resultados.
+      </h2>
+    );
+
   return (
     <div className="flex flex-col items-stretch justify-center m-auto w-[100%]">
       {data?.map((item) => (
