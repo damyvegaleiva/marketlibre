@@ -55,7 +55,7 @@ const CarouselSlider: React.FC<CarouselSliderProps> = ({
         alt={pictures[index].alt}
         custom={direction}
         onClick={() => navigate(`/category/${pictures[index].cat}`)}
-        className="absolute object-cover w-[95%] h-full md:w-2/3 lg:max-w-[1600px] hover:cursor-pointer"
+        className="absolute object-cover w-[95%] h-full md:w-2/3 lg:max-w-[1600px] hover:cursor-pointer mask-gradient-black-transparent"
       />
     </AnimatePresence>
   );

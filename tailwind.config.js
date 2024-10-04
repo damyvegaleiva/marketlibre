@@ -11,5 +11,13 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".mask-gradient-black-transparent": {
+          "mask-image": "linear-gradient(black 80%, transparent)",
+        },
+      });
+    },
+  ],
 };
